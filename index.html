@@ -70,7 +70,7 @@
           most intuitive way to imagine your next user experience.
         </p>
 
-        <a href="">Get started</a>
+        <button type="button" data-modal-open>Get started</button>
         <button type="button">Watch the Video</button>
 
         <img src="./images/hero.svg" alt="Hero" width="610" height="555" />
@@ -276,5 +276,76 @@
 
       <p>Made With Love By Figmaland All Right Reserved</p>
     </footer>
+
+    <div class="backdrop" data-modal>
+      <div class="modal">
+        <p class="modal-text">Send a message</p>
+
+        <form class="modal-form">
+          <label class="form-field">
+            <input
+              class="form-input"
+              type="text"
+              name="user-name"
+              placeholder=" "
+              pattern="[А-Яа-яa-zA-Z0-9]{3,10}"
+              required
+            />
+            <span class="form-label">Name</span>
+            <span class="form-error-message">Введіть від 3 до 10 символів</span>
+          </label>
+
+          <label class="form-field">
+            <input
+              class="form-input"
+              type="email"
+              name="user-email"
+              placeholder=" "
+              required
+            />
+            <span class="form-label">Email</span>
+            <span class="form-error-message">Не вірно введена пошта</span>
+          </label>
+
+          <label class="form-field">
+            <textarea
+              class="form-comment"
+              name="user-comment"
+              placeholder=" "
+            ></textarea>
+            <span class="form-comment-label">Message</span>
+          </label>
+
+          <button class="form-submit" type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      (() => {
+        const refs = {
+          // Додати атрибут data-modal-open на кнопку відкриття
+          openModalBtn: document.querySelector('[data-modal-open]'),
+          // Додати атрибут data-modal-close на кнопку закриття
+          // closeModalBtn: document.querySelector('[data-modal-close]'),
+          // Додати атрибут data-modal на бекдроп модалки
+          modal: document.querySelector('[data-modal]'),
+        };
+
+        refs.openModalBtn.addEventListener('click', toggleModal);
+        refs.modal.addEventListener('click', closeModal);
+
+        function toggleModal() {
+          // is-open це клас який буде додаватися/забиратися на бекдроп при натисканні на кнопки
+          refs.modal.classList.toggle('is-open');
+        }
+
+        function closeModal(e) {
+          if (e.target === refs.modal) {
+            refs.modal.classList.toggle('is-open');
+          }
+        }
+      })();
+    </script>
   </body>
 </html>
